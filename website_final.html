@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinal Plants</title>
+    <link rel="stylesheet" href="website_final.css">
+</head>
+<body>
+    <header>
+        <h1>Medicinal Plants</h1>
+        <hr />
+    </header>
+    <main>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search...">
+            <ul id="suggestions-list" class="suggestions-list"></ul>
+        </div>
+        <section class="button-container">
+            <a href="tulsi.html">
+            <button>TULSI</button>
+        </a>
+            <a href="ginger.html">
+            <button>GINGER</button>
+        </a>
+            <a href="garlic.html">
+            <button>GARLIC</button>
+        </a>
+            <a href="lavender.html">
+            <button>LAVENDER</button>
+        </a>
+            <a href="turmeric.html">
+            <button>TURMERIC</button>
+        </a>
+            <a href="lemongrass.html">
+                <button>LEMON GRASS</button>
+            </a>
+            <a href="aloevera.html">
+                <button>ALOEVERA</button>
+            </a>
+            <a href="peppermint.html">
+            <button>PEPPERMINT</button>
+            </a>
+            <a href="cinnamon.html">
+            <button>CINNAMON</button>
+        </a>
+        </section>
+         </div>
+         </div>
+          
+        <ul id="item-list">
+            <li>LEMON GRASS</li>
+            <li>ALOEVERA</li>
+            <li>TULSI</li>
+            <li>PEPPERMINT</li>
+            <li>GARLIC</li>
+            <li>GINGER</li>
+            <li>TURMERIC</li>
+            <li>LAVENDER</li>
+            <li>CINNAMON</li>
+        </ul>
+    </main>
+    <script>
+        document.getElementById('search-input').addEventListener('keyup', searchFunction);
+
+        function searchFunction() {
+            let input = document.getElementById('search-input').value.toLowerCase();
+            let suggestionsList = document.getElementById('suggestions-list');
+            let items = document.getElementById('item-list').getElementsByTagName('li');
+            let list = document.getElementById('item-list');
+
+            suggestionsList.innerHTML = ''; // Clear previous suggestions
+            if (input) {
+                suggestionsList.style.display = "block"; // Show suggestions list
+
+                let hasVisibleItem = false;
+                for (let i = 0; i < items.length; i++) {
+                    let item = items[i];
+                    if (item.innerHTML.toLowerCase().indexOf(input) > -1) {
+                        let suggestion = document.createElement('li');
+                        suggestion.textContent = item.innerHTML;
+                        suggestionsList.appendChild(suggestion);
+                        hasVisibleItem = true;
+                    }
+                }
+
+                if (!hasVisibleItem) {
+                    suggestionsList.style.display = "none"; // Hide suggestions if no matches
+                }
+            } else {
+                suggestionsList.style.display = "none"; // Hide suggestions if input is empty
+            }
+        }
+        
+        // Hide suggestions list when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!document.getElementById('search-input').contains(event.target) && !document.getElementById('suggestions-list').contains(event.target)) {
+                document.getElementById('suggestions-list').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
